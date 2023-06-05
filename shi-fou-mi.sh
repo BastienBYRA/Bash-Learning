@@ -11,10 +11,12 @@ echo "3. Ciseaux"
 read -p "Veuillez choisir votre action en tapant le nombre correspondant a votre action, puis [ENTER] : " userInput #Recupère l'input de l'utilisateur
 
 # Check l'input de l'utilisateur
-if [ $userInput -lt 1 -o $userInput -gt 3 ]; then 
+re='^[0-9]+$'
+if ! [[ $userInput =~ $re ]] || [[ $userInput -lt 1 ]] || [[ $userInput -gt 3 ]]; then
     echo "Votre action '$userInput' est introuvable."
-    exit 0;
+    exit 0
 fi
+
 
 # Génère une valeur random pour l'adversaire
 botValue=$(( $RANDOM % 3 ))
